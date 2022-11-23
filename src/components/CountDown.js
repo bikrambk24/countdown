@@ -7,8 +7,8 @@ function CountDown() {
   const [time, setTime, getTime, currentTime] = useCustomHook();
   return (
     <>
-      <Context.Provider value={{ time, setTime, getTime, currentTime }}>
-        <Title />
+      <h1>Countdown </h1>
+      <Context.Provider value={{ time, setTime, getTime, currentTime }}
         <SetTimer />
         <ClockTimer />
       </Context.Provider>
@@ -16,16 +16,9 @@ function CountDown() {
   );
 }
 
-const Title = () => {
-  return (
-    <>
-      <h3 className="title">Countdown</h3>
-    </>
-  );
-};
-
 const SetTimer = () => {
   const context = useContext(Context);
+  
   const handleClick = (event) => {
     if (context.getTime.current.value) {
       event.preventDefault();
@@ -33,6 +26,7 @@ const SetTimer = () => {
       context.getTime.current.value = null;
     }
   };
+  
   return (
     <>
       <form>
@@ -53,12 +47,12 @@ const ClockTimer = () => {
   const context = useContext(Context);
   if (context.currentTime) {
     return (
-      <div className="clocktimer">
+      <div>
         {context.time ? context.time + "  : SEC" : "0 : SEC"}
       </div>
     );
   } else {
-    return <div className="clocktimer">Time Expired</div>;
+    return <div>Time Expired</div>;
   }
 };
 
